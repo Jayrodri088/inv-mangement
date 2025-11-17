@@ -20,7 +20,6 @@ const createBookValidator = [
 ];
 
 const updateBookValidator = [
-  param("id").isMongoId().withMessage("Invalid book ID"),
   body("bookName")
     .optional()
     .isLength({ min: 6, max: 100 })
@@ -44,8 +43,11 @@ const handleValidationErrors = (req, res, next) => {
   next();
 };
 
+const idValidation = [param("id").isMongoId().withMessage("Invalid book Id")];
+
 module.exports = {
   createBookValidator,
   updateBookValidator,
   handleValidationErrors,
+  idValidation,
 };

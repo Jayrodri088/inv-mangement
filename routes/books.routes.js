@@ -4,7 +4,10 @@ const {
   createBookValidator,
   updateBookValidator,
   handleValidationErrors,
+  idValidation,
 } = require("../validators/book.validator");
+
+const { param } = require("express-validator");
 
 const router = express.Router();
 
@@ -31,7 +34,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", idValidation, handleValidationErrors, async (req, res) => {
   try {
     const { id } = req.params;
     const book = await BookModel.findById(id);
@@ -46,23 +49,29 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const deletedBook = await BookModel.findByIdAndDelete(id);
+router.delete(
+  "/:id",
+  idValidation,
+  handleValidationErrors,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deletedBook = await BookModel.findByIdAndDelete(id);
 
-    if (!deletedBook) {
-      return res.status(404).json({ message: "Book not found" });
+      if (!deletedBook) {
+        return res.status(404).json({ message: "Book not found" });
+      }
+
+      res.status(200).json({ message: "Book deleted successfully" });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
     }
-
-    res.status(200).json({ message: "Book deleted successfully" });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
   }
-});
+);
 
 router.put(
   "/:id",
+  idValidation,
   updateBookValidator,
   handleValidationErrors,
   async (req, res) => {
