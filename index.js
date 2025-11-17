@@ -38,14 +38,24 @@ app.get("/books", async (req, res) => {
 });
 
 app.get("/books/:id", async (req, res) => {
-    try {
-        const { id } = req.params;
-        const book = await BookModel.findById(id)
-        res.status(200).json(book);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-})
+  try {
+    const { id } = req.params;
+    const book = await BookModel.findById(id);
+    res.status(200).json(book);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+app.delete("/books/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    await BookModel.findByIdAndDelete(id);
+    res.status(200).json({ message: "Book deleted successfully" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 app.listen(port, () => {
   console.log("App listening on port 3000");
