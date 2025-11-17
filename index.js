@@ -3,23 +3,38 @@ const mongoose = require("mongoose")
 const app = express()
 require("dotenv").config()
 
-const port = process.env.PORT || 3000
+app.use(express.json())
 
-app.get("/", (req, res) => {
-    res.send("Hello there!")
+const port = process.env.PORT
+
+const bookSchema = mongoose.Schema({
+    bookName: {
+        type: String,
+        required: true
+    },
+    countInStock: {
+        type: Number,
+        required: true
+    }
+})
+BookModel = mongoose.model("Book", bookSchema)
+
+
+app.post("/books", async (req, res) => {
+    const newBook = await BookModel.create(req.body)
+    res.status(201).json(newBook)
 })
 
-app.get("/inventory", (req, res) => {
-    res.send("Inventory List")
-})
-
-app.get("/about", (req, res) => {
-    res.send("About Inventory Management App")
+app.get("/books", async (req, res) => {
+    const bookList = await BookModel.find({})
+    res.status(200).json(bookList)
 })
 
 app.listen(port, () => {
     console.log("App listening on port 3000")
 })
+
+
 
 const connectionString = process.env.CONNECTION_STRING
 
