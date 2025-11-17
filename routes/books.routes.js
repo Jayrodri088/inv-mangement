@@ -1,19 +1,7 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const BookModel = require("../models/book.model");
 
 const router = express.Router();
-
-const bookSchema = mongoose.Schema({
-  bookName: {
-    type: String,
-    required: true,
-  },
-  countInStock: {
-    type: Number,
-    required: true,
-  },
-});
-BookModel = mongoose.model("Book", bookSchema);
 
 router.post("/", async (req, res) => {
   try {
