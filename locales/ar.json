@@ -1,0 +1,13 @@
+{
+    "bookNotFound": "الكتاب غير موجود",
+    "bookDeleted": "تم حذف الكتاب بنجاح",
+    "bookUpdated": "تم تحديث الكتاب بنجاح",
+    "bookNameRequired": "اسم الكتاب مطلوب",
+    "bookNameLength": "يجب أن يتراوح اسم الكتاب بين 6 و 100 حرف",
+    "countInStockRequired": "الكمية المتوفرة مطلوبة",
+    "countInStockRange": "يجب أن تتراوح الكمية المتوفرة بين 0 و 1000",
+    "priceRequired": "السعر مطلوب",
+    "priceRange": "يجب أن يتراوح السعر بين 0 و 10000$",
+    "imageInvalidUrl": "يجب أن تكون الصورة رابط URL صالح",
+    "invalidBookId": "معرف الكتاب غير صالح"
+}

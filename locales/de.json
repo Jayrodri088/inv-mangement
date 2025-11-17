@@ -1,0 +1,13 @@
+{
+    "bookNotFound": "Buch nicht gefunden",
+    "bookDeleted": "Buch erfolgreich gelöscht",
+    "bookUpdated": "Buch erfolgreich aktualisiert",
+    "bookNameRequired": "Buchname ist erforderlich",
+    "bookNameLength": "Buchname muss zwischen 6 und 100 Zeichen lang sein",
+    "countInStockRequired": "Lagerbestand ist erforderlich",
+    "countInStockRange": "Lagerbestand muss zwischen 0 und 1000 liegen",
+    "priceRequired": "Preis ist erforderlich",
+    "priceRange": "Preis muss zwischen 0 und 10000$ liegen",
+    "imageInvalidUrl": "Bild muss eine gültige URL sein",
+    "invalidBookId": "Ungültige Buch-ID"
+}

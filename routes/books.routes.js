@@ -7,7 +7,6 @@ const {
   idValidation,
 } = require("../validators/book.validator");
 
-const { param } = require("express-validator");
 
 const router = express.Router();
 
@@ -40,7 +39,7 @@ router.get("/:id", idValidation, handleValidationErrors, async (req, res) => {
     const book = await BookModel.findById(id);
 
     if (!book) {
-      return res.status(404).json({ message: "Book not found" });
+      return res.status(404).json({ message: req.t("bookNotFound") });
     }
 
     res.status(200).json(book);
@@ -59,10 +58,10 @@ router.delete(
       const deletedBook = await BookModel.findByIdAndDelete(id);
 
       if (!deletedBook) {
-        return res.status(404).json({ message: "Book not found" });
+        return res.status(404).json({ message: req.t("bookNotFound") });
       }
 
-      res.status(200).json({ message: "Book deleted successfully" });
+      res.status(200).json({ message: req.t("bookDeleted") });
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
@@ -82,12 +81,12 @@ router.put(
       });
 
       if (!updatedBook) {
-        return res.status(404).json({ message: "Book not found" });
+        return res.status(404).json({ message: req.t("bookNotFound") });
       }
 
       res
         .status(200)
-        .json({ message: "Book updated successfully", book: updatedBook });
+        .json({ message: req.t("bookUpdated") , book: updatedBook });
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
